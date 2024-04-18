@@ -1,0 +1,79 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MyNotes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                
+
+                
+            </li>
+        </ul>
+        </div>
+         <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-right">
+        {% if current_user.is_authenticated %}
+            <p>Welcome, {{ current_user.username }}</p>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+        {% endif %}
+    </div>
+    </nav>
+    
+</body>
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-sm-8 card p-4">
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="alert alert-success">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
+            
+                <h3 class="text-muted text-center mb-3">Add Your Task  </h3>
+
+            <form action="{{ url_for('index',todo_id=todo.id) if todo else url_for('index')}}" method="POST">
+                <div class="input-group mb-3">
+                    <input type="text" name="title" placeholder="Enter task" class="form-control" value="{{ todo.title if todo else ''}}">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" type="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+            {% for todo in todos %}
+            <div class="row mt-2">
+                <div class="col-8">{{todo.title }}</div>
+                <div class="col-4 text-right">
+                    <form class="d-inline" method="POST" action="{{ url_for('delete',todo_id=todo.id)}}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
