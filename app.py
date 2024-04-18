@@ -9,7 +9,7 @@ pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@mysql_container/sampledb'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@127.0.0.1/sampledb'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://sampledb_j0l8_user:LFScw3953F2PRApz3WQsxYLBMjb1FumP@dpg-cogch06v3ddc73ea4fng-a/sampledb_j0l8'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://sampledb_j0l8_user:LFScw3953F2PRApz3WQsxYLBMjb1FumP@dpg-cogch06v3ddc73ea4fng-a.oregon-postgres.render.com/sampledb_j0l8'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'key'
 db = SQLAlchemy(app)
