@@ -8,7 +8,7 @@ pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@mysql_container/sampledb'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@3306/sampledb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@127.0.0.1/sampledb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'key'
 db = SQLAlchemy(app)
